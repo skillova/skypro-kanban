@@ -1,6 +1,18 @@
+import React, { useState } from "react";
 import PopUser from "../PopUser/PopUser";
 
 function Header() {
+  const [isPopUserOpen, setIsPopUserOpen] = useState(false);
+
+  const togglePopUser = () => {
+    setIsPopUserOpen(!isPopUserOpen);
+    if (!isPopUserOpen) {
+      document.querySelector(".header__pop-user-set").style.display = "block";
+    } else {
+      document.querySelector(".header__pop-user-set").style.display = "none";
+    }
+  };
+
   return (
     <header className="header">
       <div className="container">
@@ -19,7 +31,14 @@ function Header() {
             <button className="header__btn-main-new _hover01" id="btnMainNew">
               <a href="#popNewCard">Создать новую задачу</a>
             </button>
-            <a href="#user-set-target" className="header__user _hover02">
+            <a
+              href="#user-set-target"
+              className="header__user _hover02"
+              onClick={(e) => {
+                e.preventDefault();
+                togglePopUser();
+              }}
+            >
               Ivan Ivanov
             </a>
             <PopUser />
