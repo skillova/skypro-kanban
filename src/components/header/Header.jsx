@@ -6,11 +6,6 @@ function Header() {
 
   const togglePopUser = () => {
     setIsPopUserOpen(!isPopUserOpen);
-    if (!isPopUserOpen) {
-      document.querySelector(".header__pop-user-set").style.display = "block";
-    } else {
-      document.querySelector(".header__pop-user-set").style.display = "none";
-    }
   };
 
   return (
@@ -41,7 +36,7 @@ function Header() {
             >
               Ivan Ivanov
             </a>
-            <PopUser />
+            {isPopUserOpen && <PopUser />}
           </nav>
         </div>
       </div>
