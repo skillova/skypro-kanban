@@ -1,3 +1,14 @@
+import {
+  CardContainer,
+  CardsCard,
+  CardGroup,
+  CardTheme,
+  CardButton,
+  CardContent,
+  CardTitle,
+  CardDate,
+} from "./Card.styled";
+
 function Card({ cardObj }) {
   const { id, theme, title, date } = cardObj;
   const getThemeColor = (theme) => {
@@ -14,25 +25,25 @@ function Card({ cardObj }) {
   };
   const themeColor = getThemeColor(theme);
   return (
-    <div className="cards__item">
-      <div className="cards__card card" key={`${id}`} id={`${id}`}>
-        <div className="card__group">
-          <div className={`card__theme _${themeColor}`}>
-            <p className={`_${themeColor}`}>{`${theme}`}</p>
-          </div>
+    <CardContainer>
+      <CardsCard key={id} id={id}>
+        <CardGroup>
+          <CardTheme themeColor={themeColor}>
+            <p>{theme}</p>
+          </CardTheme>
           <a href="#popBrowse" target="_self">
-            <div className="card__btn">
+            <CardButton>
               <div></div>
               <div></div>
               <div></div>
-            </div>
+            </CardButton>
           </a>
-        </div>
-        <div className="card__content">
+        </CardGroup>
+        <CardContent>
           <a href="" target="_blank">
-            <h3 className="card__title">{`${title}`}</h3>
+            <CardTitle>{title}</CardTitle>
           </a>
-          <div className="card__date">
+          <CardDate>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="13"
@@ -61,11 +72,11 @@ function Card({ cardObj }) {
                 </clipPath>
               </defs>
             </svg>
-            <p>{`${date}`}</p>
-          </div>
-        </div>
-      </div>
-    </div>
+            <p>{date}</p>
+          </CardDate>
+        </CardContent>
+      </CardsCard>
+    </CardContainer>
   );
 }
 export default Card;
