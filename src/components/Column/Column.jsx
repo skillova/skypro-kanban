@@ -1,58 +1,19 @@
-import React, { useState, useEffect } from "react";
-import Cards from "../Card/Card";
+import Card from "../Card/Card";
 
-function Column() {
-  const statuses = [
-    "Без статуса",
-    "Нужно сделать",
-    "В работе",
-    "Тестирование",
-    "Готово",
-  ];
-
-  const columns = statuses.map((status) => (
+function Column({ title, cardsObjList }) {
+  return (
     <div className="main__column">
       <div className="column__title">
-        <p>{status}</p>
+        <p>{title}</p>
       </div>
       <div className="cards">
-        <Cards status={status} key={status} />
+        <div className="cards__item">
+          {cardsObjList.map((cardObj) => (
+            <Card key={cardObj.id} cardObj={cardObj} />
+          ))}
+        </div>
       </div>
     </div>
-  ));
-
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (loading) {
-    return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          minHeight: 200,
-          fontSize: 18,
-          color: "#666",
-          textAlign: "center",
-        }}
-      >
-        Данные загружаются...
-      </div>
-    );
-  }
-
-  return (
-    <>
-      <div className="main__content">{columns}</div>
-    </>
   );
 }
-
 export default Column;

@@ -1,4 +1,4 @@
-export const cardList = [
+export const cardsList = [
   {
     id: 1,
     theme: "Web Design",
@@ -76,4 +76,12 @@ export const cardList = [
     date: "09.09.23",
     status: "Готово",
   },
+];
+
+export const statuses = [
+  "Без статуса",
+  "Нужно сделать",
+  "В работе",
+  "Тестирование",
+  "Готово",
 ];
