@@ -45,7 +45,7 @@ export const CardTheme = styled.div`
   padding: 5px 14px;
   border-radius: 18px;
   background-color: ${(props) => {
-    switch (props.themeColor) {
+    switch (props.$themeColor) {
       case "orange":
         return "#FFE4C2";
       case "green":
@@ -57,7 +57,7 @@ export const CardTheme = styled.div`
     }
   }};
   color: ${(props) => {
-    switch (props.themeColor) {
+    switch (props.$themeColor) {
       case "orange":
         return "#FF6D00";
       case "green":
@@ -73,7 +73,7 @@ export const CardTheme = styled.div`
     font-weight: 600;
     line-height: 10px;
     color: ${(props) => {
-      switch (props.themeColor) {
+      switch (props.$themeColor) {
         case "orange":
           return "#FF6D00";
         case "green":
