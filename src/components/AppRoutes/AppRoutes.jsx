@@ -1,0 +1,29 @@
+import { Route, Routes } from "react-router-dom";
+import { useState } from "react";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import SignInPage from "../../pages/SignIn";
+import SignUpPage from "../../pages/SignUp";
+import MainPage from "../../pages/MainPage";
+import QuitPage from "../../pages/LogoutPage";
+import NotFoundPage from "../../pages/NotFound";
+
+function AppRoutes() {
+  const [isAuth, setIsAuth] = useState(false);
+  return (
+    <Routes>
+      <Route element={<PrivateRoute isAuth={isAuth} />}>
+        <Route path="/" element={<MainPage />}>
+          <Route
+            path="/logout-confirm"
+            element={<QuitPage setIsAuth={setIsAuth} />}
+          />
+        </Route>
+      </Route>
+      <Route path="/sign-in" element={<SignInPage setIsAuth={setIsAuth} />} />
+      <Route path="/sign-up" element={<SignUpPage />} />
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
+  );
+}
+
+export default AppRoutes;
