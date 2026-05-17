@@ -6,6 +6,7 @@ import SignUpPage from "../../pages/SignUp";
 import MainPage from "../../pages/MainPage";
 import QuitPage from "../../pages/LogoutPage";
 import NotFoundPage from "../../pages/NotFound";
+import PopBrowse from "../../components/PopBrowse/PopBrowse";
 
 function AppRoutes() {
   const [isAuth, setIsAuth] = useState(false);
@@ -13,6 +14,7 @@ function AppRoutes() {
     <Routes>
       <Route element={<PrivateRoute isAuth={isAuth} />}>
         <Route path="/" element={<MainPage />}>
+          <Route path="/popBrowse/:id" element={<PopBrowse />} />
           <Route
             path="/logout-confirm"
             element={<QuitPage setIsAuth={setIsAuth} />}

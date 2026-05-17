@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   CardContainer,
   CardsCard,
@@ -40,9 +41,9 @@ function Card({ cardObj }) {
           </a>
         </CardGroup>
         <CardContent>
-          <a href="" target="_blank">
+          <Link to={`/popBrowse/${id}`}>
             <CardTitle>{title}</CardTitle>
-          </a>
+          </Link>
           <CardDate>
             <svg
               xmlns="http://www.w3.org/2000/svg"
