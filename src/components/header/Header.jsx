@@ -1,32 +1,51 @@
-import PopUser from "../PopUser/PopUser";
+import React, { useState } from "react";
+import User from "../User/User";
+import {
+  HeaderWrapper,
+  Container,
+  HeaderBlock,
+  HeaderLogo,
+  HeaderNav,
+  HeaderButton,
+  HeaderUserLink
+} from "./Header.styled";
 
 function Header() {
+  const [isUserOpen, setIsUserOpen] = useState(false);
+  const toggleUser = () => {
+    setIsUserOpen(!isUserOpen);
+  };
+
   return (
-    <header className="header">
-      <div className="container">
-        <div className="header__block">
-          <div className="header__logo _show _light">
+    <HeaderWrapper>
+      <Container>
+        <HeaderBlock>
+          <div>
             <a href="" target="_self">
-              <img src="images/logo.png" alt="logo" />
+              <HeaderLogo src="images/logo.png" alt="logo" />
             </a>
           </div>
-          <div className="header__logo _dark">
+          <div>
             <a href="" target="_self">
-              <img src="images/logo_dark.png" alt="logo" />
+              <HeaderLogo src="images/logo_dark.png" alt="logo" />
             </a>
           </div>
-          <nav className="header__nav">
-            <button className="header__btn-main-new _hover01" id="btnMainNew">
+          <HeaderNav>
+            <HeaderButton id="btnMainNew">
               <a href="#popNewCard">Создать новую задачу</a>
-            </button>
-            <a href="#user-set-target" className="header__user _hover02">
-              Ivan Ivanov
-            </a>
-            <PopUser />
-          </nav>
-        </div>
-      </div>
-    </header>
+            </HeaderButton>
+            <HeaderUserLink
+              onClick={(e) => {
+                e.preventDefault();
+                toggleUser();
+              }}
+            >Ivan Ivanov
+            </HeaderUserLink>
+            {isUserOpen && <User toggleUser={toggleUser} />}
+          </HeaderNav>
+        </HeaderBlock>
+      </Container>
+    </HeaderWrapper>
   );
 }
 

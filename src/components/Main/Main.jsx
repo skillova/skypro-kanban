@@ -1,15 +1,25 @@
-import Column from "../Column/Column";
+import Header from "../../components/Header/Header"
+import Content from "../../components/Content/Content";
+import { GlobalStyles } from "../../GlobalStyles";
+import { Wrapper } from "../../App.styled";
+import { Outlet } from "react-router-dom";
 
-function Main() {
+const Main = () => {
   return (
-    <main className="main">
-      <div className="container">
-        <div className="main__block">
-          <Column />
-        </div>
-      </div>
-    </main>
+    <>
+      <GlobalStyles />
+      <Wrapper>
+        {/*pop-up start*/}
+        {/* <PopNewCard />
+        <PopBrowse /> */}
+        {/*pop-up end*/}
+        <Header />
+        <Content/>
+        <Outlet />
+      </Wrapper>
+      <script src="js/script.js"></script>
+    </>
   );
-}
+};
 
 export default Main;

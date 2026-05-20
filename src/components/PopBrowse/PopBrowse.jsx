@@ -1,4 +1,29 @@
+import { useParams, useNavigate } from "react-router-dom";
+import { useMemo } from "react";
+import { cardsList } from "../../data";
+
 function PopBrowse() {
+  const { id } = useParams();
+  const card = useMemo(
+    () => cardsList.find((w) => String(w.id) === String(id)),
+    [id],
+  );
+  const navigate = useNavigate();
+  const HomePage = () => {
+    navigate("/");
+  };
+  const getThemeColor = (theme) => {
+    switch (theme) {
+      case "Web Design":
+        return "orange";
+      case "Research":
+        return "green";
+      case "Copywriting":
+        return "purple";
+      default:
+        return "gray";
+    }
+  };
   return (
     <div className="pop-browse" id="popBrowse">
       <div className="pop-browse__container">
@@ -6,8 +31,10 @@ function PopBrowse() {
           <div className="pop-browse__content">
             <div className="pop-browse__top-block">
               <h3 className="pop-browse__ttl">Название задачи</h3>
-              <div className="categories__theme theme-top _orange _active-category">
-                <p className="_orange">Web Design</p>
+              <div
+                className={`categories__theme theme-top _${getThemeColor(card.theme)} _active-category`}
+              >
+                <p className={`_${getThemeColor(card.theme)}`}>{card.theme}</p>
               </div>
             </div>
             <div className="pop-browse__status status">
@@ -17,7 +44,7 @@ function PopBrowse() {
                   <p>Без статуса</p>
                 </div>
                 <div className="status__theme _gray">
-                  <p className="_gray">Нужно сделать</p>
+                  <p className="_gray">{card.status}</p>
                 </div>
                 <div className="status__theme _hide">
                   <p>В работе</p>
@@ -37,14 +64,14 @@ function PopBrowse() {
                 action="#"
               >
                 <div className="form-browse__block">
-                  <label for="textArea01" className="subttl">
+                  <label htmlFor="textArea01" className="subttl">
                     Описание задачи
                   </label>
                   <textarea
                     className="form-browse__area"
                     name="text"
                     id="textArea01"
-                    readonly
+                    readOnly
                     placeholder="Введите описание задачи..."
                   ></textarea>
                 </div>
@@ -146,7 +173,7 @@ function PopBrowse() {
                   <div className="calendar__period">
                     <p className="calendar__p date-end">
                       Срок исполнения:{" "}
-                      <span className="date-control">09.09.23</span>
+                      <span className="date-control">{card.date}</span>
                     </p>
                   </div>
                 </div>
@@ -167,8 +194,11 @@ function PopBrowse() {
                   <a href="#">Удалить задачу</a>
                 </button>
               </div>
-              <button className="btn-browse__close _btn-bg _hover01">
-                <a href="#">Закрыть</a>
+              <button
+                className="btn-browse__close _btn-bg _hover01"
+                onClick={HomePage}
+              >
+                Закрыть
               </button>
             </div>
             <div className="pop-browse__btn-edit _hide">
