@@ -777,7 +777,7 @@ body {
   padding: 0;
 }
 .header__pop-user-set {
-  display: none;
+  display: block;
   position: absolute;
   top: 61px;
   right: 0;
@@ -1086,4 +1086,10 @@ body {
   .pop-exit__form-group {
     display: block;
   }
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

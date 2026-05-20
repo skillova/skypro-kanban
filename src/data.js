@@ -1,0 +1,87 @@
+export const cardsList = [
+  {
+    id: 1,
+    theme: "Web Design",
+    title: "Название задачи",
+    date: "09.09.23",
+    status: "Без статуса",
+  },
+  {
+    id: 2,
+    theme: "Research",
+    title: "Название задачи",
+    date: "09.09.23",
+    status: "Без статуса",
+  },
+  {
+    id: 3,
+    theme: "Web Design",
+    title: "Название задачи",
+    date: "09.09.23",
+    status: "Без статуса",
+  },
+  {
+    id: 4,
+    theme: "Copywriting",
+    title: "Название задачи",
+    date: "09.09.23",
+    status: "Без статуса",
+  },
+  {
+    id: 5,
+    theme: "Web Design",
+    title: "Название задачи",
+    date: "09.09.23",
+    status: "Без статуса",
+  },
+  {
+    id: 6,
+    theme: "Research",
+    title: "Название задачи",
+    date: "09.09.23",
+    status: "Нужно сделать",
+  },
+  {
+    id: 7,
+    theme: "Research",
+    title: "Название задачи",
+    date: "09.09.23",
+    status: "В работе",
+  },
+  {
+    id: 8,
+    theme: "Copywriting",
+    title: "Название задачи",
+    date: "09.09.23",
+    status: "В работе",
+  },
+  {
+    id: 9,
+    theme: "Web Design",
+    title: "Название задачи",
+    date: "09.09.23",
+    status: "В работе",
+  },
+  {
+    id: 10,
+    theme: "Research",
+    title: "Название задачи",
+    date: "09.09.23",
+    status: "Тестирование",
+  },
+  {
+    id: 11,
+    theme: "Research",
+    title: "Название задачи",
+    date: "09.09.23",
+    status: "Готово",
+  },
+];
+
+export const statuses = [
+  "Без статуса",
+  "Нужно сделать",
+  "В работе",
+  "Тестирование",
+  "Готово",
+];
