@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import Column from "../Column/Column";
-import Loading from "./Loading";
+import Loader from "../Loader/Loader";
 import { cardsList, statuses } from "../../data";
+import { MainMain, Container, MainBlock, MainContent } from "./Main.styeled";
 
 function Main() {
   const [isLoading, setIsLoading] = useState(true);
@@ -13,12 +14,12 @@ function Main() {
     return () => clearTimeout(timer);
   }, []);
   return (
-    <main className="main">
-      <div className="container">
-        <div className="main__block">
-          {isLoading && <Loading />}
+    <MainMain>
+      <Container>
+        <MainBlock>
+          {isLoading && <Loader />}
           {!isLoading && (
-            <div className="main__content">
+            <MainContent>
               {statuses.map((status) => (
                 <Column
                   key={status}
@@ -28,11 +29,11 @@ function Main() {
                   )}
                 />
               ))}
-            </div>
+            </MainContent>
           )}
-        </div>
-      </div>
-    </main>
+        </MainBlock>
+      </Container>
+    </MainMain>
   );
 }
 export default Main;

@@ -1,3 +1,10 @@
+import {
+  CalendarContent,
+  CalendarDaysNames,
+  CalendarCells,
+  CalendarDayName,
+} from "./Calendar.styled";
+
 function Calendar() {
   return (
     <div className="calendar__content">

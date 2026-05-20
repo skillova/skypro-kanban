@@ -1,3 +1,14 @@
+import {
+  CardContainer,
+  CardsCard,
+  CardGroup,
+  CardTheme,
+  CardButton,
+  CardContent,
+  CardTitle,
+  CardDate,
+} from "./Card.styled";
+
 function Card({ cardObj }) {
   const { id, theme, title, date } = cardObj;
   const getThemeColor = (theme) => {
@@ -14,25 +25,25 @@ function Card({ cardObj }) {
   };
   const themeColor = getThemeColor(theme);
   return (
-    <div className="cards__item">
-      <div className="cards__card card" key={`${id}`} id={`${id}`}>
-        <div className="card__group">
-          <div className={`card__theme _${themeColor}`}>
-            <p className={`_${themeColor}`}>{`${theme}`}</p>
-          </div>
+    <CardContainer>
+      <CardsCard key={id} id={id}>
+        <CardGroup>
+          <CardTheme $themeColor={themeColor}>
+            <p>{theme}</p>
+          </CardTheme>
           <a href="#popBrowse" target="_self">
-            <div className="card__btn">
+            <CardButton>
               <div></div>
               <div></div>
               <div></div>
-            </div>
+            </CardButton>
           </a>
-        </div>
-        <div className="card__content">
+        </CardGroup>
+        <CardContent>
           <a href="" target="_blank">
-            <h3 className="card__title">{`${title}`}</h3>
+            <CardTitle>{title}</CardTitle>
           </a>
-          <div className="card__date">
+          <CardDate>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="13"
@@ -40,19 +51,19 @@ function Card({ cardObj }) {
               viewBox="0 0 13 13"
               fill="none"
             >
-              <g clip-path="url(#clip0_1_415)">
+              <g clipPath="url(#clip0_1_415)">
                 <path
                   d="M10.5625 2.03125H2.4375C1.7644 2.03125 1.21875 2.5769 1.21875 3.25V10.5625C1.21875 11.2356 1.7644 11.7812 2.4375 11.7812H10.5625C11.2356 11.7812 11.7812 11.2356 11.7812 10.5625V3.25C11.7812 2.5769 11.2356 2.03125 10.5625 2.03125Z"
                   stroke="#94A6BE"
-                  stroke-width="0.8"
-                  stroke-linejoin="round"
+                  strokeWidth="0.8"
+                  strokeLinejoin="round"
                 />
                 <path
                   d="M11.7812 4.0625H1.21875M3.25 1.21875V2.03125V1.21875ZM9.75 1.21875V2.03125V1.21875Z"
                   stroke="#94A6BE"
-                  stroke-width="0.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="0.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </g>
               <defs>
@@ -61,11 +72,11 @@ function Card({ cardObj }) {
                 </clipPath>
               </defs>
             </svg>
-            <p>{`${date}`}</p>
-          </div>
-        </div>
-      </div>
-    </div>
+            <p>{date}</p>
+          </CardDate>
+        </CardContent>
+      </CardsCard>
+    </CardContainer>
   );
 }
 export default Card;
