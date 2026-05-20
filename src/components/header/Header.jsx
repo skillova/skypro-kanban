@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PopUser from "../PopUser/PopUser";
+import User from "../User/User";
 import {
   HeaderWrapper,
   Container,
@@ -7,14 +7,13 @@ import {
   HeaderLogo,
   HeaderNav,
   HeaderButton,
-  HeaderUserLink,
+  HeaderUserLink
 } from "./Header.styled";
 
 function Header() {
-  const [isPopUserOpen, setIsPopUserOpen] = useState(false);
-
-  const togglePopUser = () => {
-    setIsPopUserOpen(!isPopUserOpen);
+  const [isUserOpen, setIsUserOpen] = useState(false);
+  const toggleUser = () => {
+    setIsUserOpen(!isUserOpen);
   };
 
   return (
@@ -36,16 +35,13 @@ function Header() {
               <a href="#popNewCard">Создать новую задачу</a>
             </HeaderButton>
             <HeaderUserLink
-              href="#user-set-target"
-              className="header__user _hover02"
               onClick={(e) => {
                 e.preventDefault();
-                togglePopUser();
+                toggleUser();
               }}
-            >
-              Ivan Ivanov
+            >Ivan Ivanov
             </HeaderUserLink>
-            {isPopUserOpen && <PopUser />}
+            {isUserOpen && <User toggleUser={toggleUser} />}
           </HeaderNav>
         </HeaderBlock>
       </Container>

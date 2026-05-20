@@ -1,39 +1,25 @@
-import { useState, useEffect } from "react";
-import Column from "../Column/Column";
-import Loader from "../Loader/Loader";
-import { cardsList, statuses } from "../../data";
-import { MainMain, Container, MainBlock, MainContent } from "./Main.styeled";
+import Header from "../../components/Header/Header"
+import Content from "../../components/Content/Content";
+import { GlobalStyles } from "../../GlobalStyles";
+import { Wrapper } from "../../App.styled";
+import { Outlet } from "react-router-dom";
 
-function Main() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [localCardsList] = useState(cardsList);
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, []);
+const Main = () => {
   return (
-    <MainMain>
-      <Container>
-        <MainBlock>
-          {isLoading && <Loader />}
-          {!isLoading && (
-            <MainContent>
-              {statuses.map((status) => (
-                <Column
-                  key={status}
-                  title={status}
-                  cardsObjList={localCardsList.filter(
-                    (cardObj) => cardObj.status === status,
-                  )}
-                />
-              ))}
-            </MainContent>
-          )}
-        </MainBlock>
-      </Container>
-    </MainMain>
+    <>
+      <GlobalStyles />
+      <Wrapper>
+        {/*pop-up start*/}
+        {/* <PopNewCard />
+        <PopBrowse /> */}
+        {/*pop-up end*/}
+        <Header />
+        <Content/>
+        <Outlet />
+      </Wrapper>
+      <script src="js/script.js"></script>
+    </>
   );
-}
+};
+
 export default Main;
