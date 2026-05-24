@@ -22,7 +22,7 @@ function AppRoutes() {
         </Route>
       </Route>
       <Route path="/sign-in" element={<SignInPage setIsAuth={setIsAuth} />} />
-      <Route path="/sign-up" element={<SignUpPage />} />
+      <Route path="/sign-up" element={<SignUpPage setIsAuth={setIsAuth} />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
