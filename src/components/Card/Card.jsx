@@ -9,41 +9,34 @@ import {
   CardTitle,
   CardDate,
 } from "./Card.styled";
+const getThemeColor = (theme) => {
+  const themeColors = {
+    "Web Design": "orange",
+    Research: "green",
+    Copywriting: "purple",
+  };
+  return themeColors[theme] || "gray";
+};
 
 function Card({ cardObj }) {
-  const { id, theme, title, date } = cardObj;
-  const getThemeColor = (theme) => {
-    switch (theme) {
-      case "Web Design":
-        return "orange";
-      case "Research":
-        return "green";
-      case "Copywriting":
-        return "purple";
-      default:
-        return "gray";
-    }
-  };
-  const themeColor = getThemeColor(theme);
+  const { date, title, topic, _id } = cardObj;
+  const themeColor = getThemeColor(topic);
+
   return (
     <CardContainer>
-      <CardsCard key={id} id={id}>
+      <CardsCard id={_id}>
         <CardGroup>
           <CardTheme $themeColor={themeColor}>
-            <p>{theme}</p>
+            <p>{topic}</p>
           </CardTheme>
-          <a href="#popBrowse" target="_self">
+          <Link to={`/popBrowse/${_id}`}>
             <CardButton>
-              <div></div>
-              <div></div>
-              <div></div>
+              <span>•••</span>
             </CardButton>
-          </a>
+          </Link>
         </CardGroup>
         <CardContent>
-          <Link to={`/popBrowse/${id}`}>
-            <CardTitle>{title}</CardTitle>
-          </Link>
+          <CardTitle>{title}</CardTitle>
           <CardDate>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -80,4 +73,5 @@ function Card({ cardObj }) {
     </CardContainer>
   );
 }
+
 export default Card;

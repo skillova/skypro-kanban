@@ -1,34 +1,45 @@
-import { useState, useEffect } from "react";
+import { useMemo } from "react";
 import Column from "../Column/Column";
 import Loader from "../Loader/Loader";
-import { cardsList, statuses } from "../../data";
 import { MainMain, Container, MainBlock, MainContent } from "./Content.styeled";
+const statuses = [
+  "Без статуса",
+  "Нужно сделать",
+  "В работе",
+  "Тестирование",
+  "Готово",
+];
 
-function Content() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [localCardsList] = useState(cardsList);
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, []);
+function Content({ cardsList, loading, error }) {
+  const groupedCards = useMemo(() => {
+    return statuses.reduce((acc, status) => {
+      acc[status] = cardsList.filter((card) => card.status === status);
+      return acc;
+    }, {});
+  }, [cardsList]);
+
   return (
     <MainMain>
       <Container>
         <MainBlock>
-          {isLoading && <Loader />}
-          {!isLoading && (
+          {loading && <Loader />}
+          {!loading && error && (
+            <div style={{ color: "red", padding: "15px", textAlign: "center" }}>
+              {error}
+            </div>
+          )}
+          {!loading && (
             <MainContent>
-              {statuses.map((status) => (
-                <Column
-                  key={status}
-                  title={status}
-                  cardsObjList={localCardsList.filter(
-                    (cardObj) => cardObj.status === status,
-                  )}
-                />
-              ))}
+              {statuses.map((status) => {
+                const cardsForStatus = groupedCards[status];
+                return (
+                  <Column
+                    key={status}
+                    title={status}
+                    cardsObjList={cardsForStatus}
+                  />
+                );
+              })}
             </MainContent>
           )}
         </MainBlock>

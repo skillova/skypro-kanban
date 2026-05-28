@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import User from "../User/User";
 import {
   HeaderWrapper,
@@ -7,13 +8,19 @@ import {
   HeaderLogo,
   HeaderNav,
   HeaderButton,
-  HeaderUserLink
+  HeaderUserLink,
 } from "./Header.styled";
 
 function Header() {
+  const navigate = useNavigate();
   const [isUserOpen, setIsUserOpen] = useState(false);
   const toggleUser = () => {
     setIsUserOpen(!isUserOpen);
+  };
+  const handleNewCard = (e) => {
+    e.preventDefault();
+    // toggleModal();
+    navigate("/PopNewCard");
   };
 
   return (
@@ -31,7 +38,7 @@ function Header() {
             </a>
           </div>
           <HeaderNav>
-            <HeaderButton id="btnMainNew">
+            <HeaderButton id="btnMainNew" onClick={handleNewCard}>
               <a href="#popNewCard">Создать новую задачу</a>
             </HeaderButton>
             <HeaderUserLink
@@ -39,7 +46,8 @@ function Header() {
                 e.preventDefault();
                 toggleUser();
               }}
-            >Ivan Ivanov
+            >
+              Ivan Ivanov
             </HeaderUserLink>
             {isUserOpen && <User toggleUser={toggleUser} />}
           </HeaderNav>

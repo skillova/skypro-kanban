@@ -39,7 +39,6 @@ const AuthForm = ({ isSignUp, setIsAuth }) => {
 
   // функция валидации
   const validateForm = () => {
-    console.log("run /validateForm (Валидация формы)");
     const newErrors = { name: "", login: "", password: "" };
     let isValid = true;
 
