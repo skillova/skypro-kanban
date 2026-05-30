@@ -15,7 +15,7 @@ function Column({ title, cardsObjList }) {
       <CardsContainer>
         <CardsList>
           {cardsObjList.map((cardObj) => (
-            <Card key={cardObj.id} cardObj={cardObj} />
+            <Card key={cardObj._id} cardObj={cardObj} />
           ))}
         </CardsList>
       </CardsContainer>

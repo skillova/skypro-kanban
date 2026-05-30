@@ -1,6 +1,37 @@
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { createTask } from "../../services/api";
 import Calendar from "../Calendar/Calendar";
 
 function PopNewCard() {
+  const navigate = useNavigate();
+  const token = localStorage.getItem("tokenAuth");
+
+  const [formData, setFormData] = useState({
+    title: "",
+    topic: "Web Design",
+    status: "Без статуса",
+    description: "",
+    date: "2024-01-07T16:26:18.179Z",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleCreate = async (e) => {
+    e.preventDefault();
+    await createTask({
+      token,
+      task: formData,
+    });
+    navigate("/");
+  };
+
   return (
     <div className="pop-new-card" id="popNewCard">
       <div className="pop-new-card__container">
@@ -23,10 +54,12 @@ function PopNewCard() {
                   <input
                     className="form-new__input"
                     type="text"
-                    name="name"
+                    name="title"
                     id="formTitle"
                     placeholder="Введите название задачи..."
                     autoFocus
+                    value={formData.name}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="form-new__block">
@@ -35,9 +68,11 @@ function PopNewCard() {
                   </label>
                   <textarea
                     className="form-new__area"
-                    name="text"
+                    name="description"
                     id="textArea"
                     placeholder="Введите описание задачи..."
+                    value={formData.description}
+                    onChange={handleChange}
                   ></textarea>
                 </div>
               </form>
@@ -96,7 +131,11 @@ function PopNewCard() {
                 </div>
               </div>
             </div>
-            <button className="form-new__create _hover01" id="btnCreate">
+            <button
+              className="form-new__create _hover01"
+              id="btnCreate"
+              onClick={handleCreate}
+            >
               Создать задачу
             </button>
           </div>
